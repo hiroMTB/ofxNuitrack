@@ -1,6 +1,6 @@
 # ofxNuitrack
 
-OpenFrameworks addon for Nuitrack body tracking addon. Ported from [Cinder-Nuitrack block](https://github.com/daanvanhasselt/Cinder-Nuitrack).
+OpenFrameworks addon for Nuitrack body tracking SDK. Ported from [Cinder-Nuitrack block](https://github.com/daanvanhasselt/Cinder-Nuitrack).
 
 
 ## Requirements
