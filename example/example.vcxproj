@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Win32">
+			<Configuration>Release</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|x64">
+			<Configuration>Release</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Condition="'$(WindowsTargetPlatformVersion)'==''">
+		<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
+		<WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+		<TargetPlatformVersion>$(WindowsTargetPlatformVersion)</TargetPlatformVersion>
+	</PropertyGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
+		<Keyword>Win32Proj</Keyword>
+		<RootNamespace>example</RootNamespace>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<CharacterSet>Unicode</CharacterSet>
+		<WholeProgramOptimization>true</WholeProgramOptimization>
+		<PlatformToolset>v141</PlatformToolset>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Configuration)\</IntDir>
+		<TargetName>$(ProjectName)_debug</TargetName>
+		<LinkIncremental>true</LinkIncremental>
+		<GenerateManifest>true</GenerateManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Configuration)\</IntDir>
+		<TargetName>$(ProjectName)_debug</TargetName>
+		<LinkIncremental>true</LinkIncremental>
+		<GenerateManifest>true</GenerateManifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Configuration)\</IntDir>
+		<LinkIncremental>false</LinkIncremental>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutDir>bin\</OutDir>
+		<IntDir>obj\$(Configuration)\</IntDir>
+		<LinkIncremental>false</LinkIncremental>
+	</PropertyGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxNuitrack\libs;..\..\..\addons\ofxNuitrack\libs\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\csharp;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\linux_arm;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win32;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64;..\..\..\addons\ofxNuitrack\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);nuitrack.lib;middleware.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxNuitrack\libs;..\..\..\addons\ofxNuitrack\libs\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\csharp;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\linux_arm;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win32;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64;..\..\..\addons\ofxNuitrack\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);nuitrack.lib;middleware.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<ClCompile>
+			<WholeProgramOptimization>false</WholeProgramOptimization>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxNuitrack\libs;..\..\..\addons\ofxNuitrack\libs\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\csharp;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\linux_arm;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win32;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64;..\..\..\addons\ofxNuitrack\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+		</ClCompile>
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);nuitrack.lib;middleware.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<ClCompile>
+			<WholeProgramOptimization>false</WholeProgramOptimization>
+			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<WarningLevel>Level3</WarningLevel>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxNuitrack\libs;..\..\..\addons\ofxNuitrack\libs\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types;..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\csharp;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\linux_arm;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win32;..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64;..\..\..\addons\ofxNuitrack\src</AdditionalIncludeDirectories>
+			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+		</ClCompile>
+		<Link>
+			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<SubSystem>Console</SubSystem>
+			<OptimizeReferences>true</OptimizeReferences>
+			<EnableCOMDATFolding>true</EnableCOMDATFolding>
+			<RandomizedBaseAddress>false</RandomizedBaseAddress>
+			<AdditionalDependencies>%(AdditionalDependencies);nuitrack.lib;middleware.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\addons\ofxNuitrack\libs\nuitrack\lib\win64</AdditionalLibraryDirectories>
+		</Link>
+		<PostBuildEvent />
+	</ItemDefinitionGroup>
+	<ItemGroup>
+		<ClCompile Include="src\main.cpp" />
+		<ClCompile Include="src\ofApp.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxNuitrack\src\ofxNuitrack.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\src\ofxNuitrack.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\middleware\DepthProviderAdapterAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\ColorSensor_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\DepthSensor_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\GestureRecognizer_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\HandTracker_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\IssueTracker_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\NuitrackModule_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\Nuitrack_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\Public_Nuitrack_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\SkeletonTracker_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\capi\UserTracker_CAPI.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android\NuitrackManager.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\middleware\android\USBGateKeeper.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\ModuleFunctions.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\ColorSensor.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\DepthSensor.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\GestureRecognizer.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\HandTracker.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\HeaderOnlyAPI_Module.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\Module.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\NuitrackModule.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\SkeletonTracker.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\modules\UserTracker.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\Nuitrack.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\BoundingBox.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Color3.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\DepthFrame.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Error.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Export.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Frame.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\FrameBorderIssue.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Gesture.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\GestureData.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Hand.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\HandTrackerData.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Issue.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\IssuesData.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\ObjectData.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\OcclusionIssue.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Orientation.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\OutputMode.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\RGBFrame.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\RGBMark.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\SensorIssue.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Skeleton.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\SkeletonData.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\User.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\UserFrame.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\types\Vector3.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils\CallbackStruct.h" />
+		<ClInclude Include="..\..\..\addons\ofxNuitrack\libs\nuitrack\include\nuitrack\utils\ExceptionTranslator.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+			<Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc">
+			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+			<AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
+		</ResourceCompile>
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties RESOURCE_FILE="icon.rc" />
+		</VisualStudio>
+	</ProjectExtensions>
+</Project>
