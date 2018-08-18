@@ -1,5 +1,13 @@
 #include "ofApp.h"
+
+
+//#define OPEN_MP_TEST
+// comment out to enable OpenMP
+// also need turnning on openMP support from visual studio project properties
+
+#ifdef OPEN_MP_TEST
 #include <omp.h>
+#endif
 
 using namespace tdv::nuitrack;
 using namespace glm;
@@ -137,10 +145,9 @@ void ofApp::updatePointcloud() {
 
 		const unsigned short * data = dframe->getData();
 
-		// OpenMP test
-		// Comment out following #pragma only after turnning on Visual Studio OpenMP support
-		// No big difference though...
-		// #pragma omp parallel for num_threads(4)
+#ifdef OPEN_MP_TEST
+		#pragma omp parallel for num_threads(4)
+#endif
 		for (int y = 0; y < row; y += skip) {
 			for (int x = 0; x < col; x += skip) {
 				int index = y * col + x;
