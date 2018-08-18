@@ -62,66 +62,44 @@ void ofApp::setup(){
 	});
 
 	tracker->setRGBCallback([this](RGBFrame::Ptr data) {	
-		try {
-			rgbFrameSize.x = data->getCols();
-			rgbFrameSize.y = data->getRows();
-			const Color3 *colorData = data->getData();
-			uint8_t *colorDataPtr = (uint8_t *)colorData;
-			ofPixels pix;
+		rgbFrameSize.x = data->getCols();
+		rgbFrameSize.y = data->getRows();
+		const Color3 *colorData = data->getData();
+		uint8_t *colorDataPtr = (uint8_t *)colorData;
+		ofPixels pix;
 
-			string fileName = tracker->getConfigValue("Realsense2Module.FileRecord");
-			if (fileName == "") {
-				//Live feed = BGR
-				pix.setFromPixels(colorDataPtr, rgbFrameSize.x, rgbFrameSize.y, OF_PIXELS_BGR);
-			}
-			else 
-			{
-				// BAG file = RGB
-				pix.setFromPixels(colorDataPtr, rgbFrameSize.x, rgbFrameSize.y, OF_PIXELS_RGB);
-			}
-			rgbTex.loadData(pix);
-
+		string fileName = tracker->getConfigValue("Realsense2Module.FileRecord");
+		if (fileName == "") {
+			//Live feed = BGR
+			pix.setFromPixels(colorDataPtr, rgbFrameSize.x, rgbFrameSize.y, OF_PIXELS_BGR);
 		}
-		catch (const Exception &e) {
-			ofLogWarning() << "Expeption : " << e.what();
+		else 
+		{
+			// BAG file = RGB
+			pix.setFromPixels(colorDataPtr, rgbFrameSize.x, rgbFrameSize.y, OF_PIXELS_RGB);
 		}
+		rgbTex.loadData(pix);
 	});
 
 	tracker->setDepthCallback([this](DepthFrame::Ptr data) {
-		try {
-
-			depthFrameSize.x = data->getCols();
-			depthFrameSize.y = data->getRows();
-			const unsigned short *depthData = data->getData();
-			ofShortPixels pix;
-			pix.setFromPixels(depthData, depthFrameSize.x, depthFrameSize.y, OF_PIXELS_GRAY);
-			depthTex.loadData(pix);
-			bNeedPointcloudUpdate = true;
-		}
-		catch (const Exception &e) {
-			ofLogWarning() << "Expeption : " << e.what();
-		}
+		depthFrameSize.x = data->getCols();
+		depthFrameSize.y = data->getRows();
+		const unsigned short *depthData = data->getData();
+		ofShortPixels pix;
+		pix.setFromPixels(depthData, depthFrameSize.x, depthFrameSize.y, OF_PIXELS_GRAY);
+		depthTex.loadData(pix);
+		bNeedPointcloudUpdate = true;
 	});
 
 
 	tracker->setSkeletonCallback([this](SkeletonData::Ptr data) {
-		try{
-			skeletons = data->getSkeletons();
-		}
-		catch (const Exception &e) {
-			ofLogWarning() << "Expeption : " << e.what();
-		}
+		skeletons = data->getSkeletons();
 	});
 
 	tracker->setUserCallback([this](UserFrame::Ptr data) {
-		try{
-			floorPoint = ofxnui::Tracker::fromVector3(data->getFloor()) / vec3(1000);
-			floorNormal = ofxnui::Tracker::fromVector3(data->getFloorNormal());
-			users = data->getUsers();
-		}	
-		catch (const Exception &e) {
-			ofLogWarning() << "Expeption : " << e.what();
-		}
+		floorPoint = ofxnui::Tracker::fromVector3(data->getFloor()) / vec3(1000);
+		floorNormal = ofxnui::Tracker::fromVector3(data->getFloorNormal());
+		users = data->getUsers();
 	});
 
 	tracker->run();
@@ -129,13 +107,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	try {
-		tracker->poll();
-	}
-	catch (const Exception &e) {
-		ofLogWarning() << "Expeption : " << e.what();
-	}
-
+	tracker->poll();
 	updatePointcloud();
 }
 
@@ -331,15 +303,11 @@ void ofApp::keyPressed(int key){
 		// folowing code is just for test that
 		// We can not change config setting in run time
 		// we can change config value but no effect.
-		try {
-			string maxDepth = tracker->getConfigValue(keyAlpha);
-			float maxDepthInt = ofToInt(maxDepth);
-			maxDepthInt += 0.1;
-			string newVal = ofToString(maxDepthInt, 1);
-			tracker->setConfigValue(keyAlpha, newVal);
-		}catch(const Exception &e) {
-			ofLogWarning() << "Can not set config value : " << e.what();
-		}
+		string maxDepth = tracker->getConfigValue(keyAlpha);
+		float maxDepthInt = ofToInt(maxDepth);
+		maxDepthInt += 0.1;
+		string newVal = ofToString(maxDepthInt, 1);
+		tracker->setConfigValue(keyAlpha, newVal);
 		break;
 	}
 	}
