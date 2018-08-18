@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include <omp.h>
 
 using namespace tdv::nuitrack;
 using namespace glm;
@@ -114,31 +115,49 @@ void ofApp::update(){
 void ofApp::updatePointcloud() {
 	if (bNeedPointcloudUpdate) {
 
-		pc.clear();
-
 		DepthSensor::Ptr dtracker = tracker->depthTracker;
 		DepthFrame::Ptr dframe = dtracker->getDepthFrame();
 		int row = dframe->getRows();
 		int col = dframe->getCols();
-		int skip = 4;
+		int skip = 4;	// downsampling level, 1 = max
+		int size = ((float)row/skip) * ceil((float)col / skip);
+
+		// allocate vertices and colors only once
+		if (pc.getVertices().size() == 0) {
+			pc.clear();
+
+			vector<glm::vec3> p;
+			p.assign(size, glm::vec3(0,0,0));
+			pc.addVertices(p);
+
+			vector<ofFloatColor> c;
+			c.assign(size, ofFloatColor(0,0,0,0.9));
+			pc.addColors(c);
+		}
+
 		const unsigned short * data = dframe->getData();
 
-		for (int y=0; y<row; y+=skip) {
-			for (int x=0; x<col; x+=skip) {
-				int index = y*col + x;
+		// OpenMP test
+		// Comment out following #pragma only after turnning on Visual Studio OpenMP support
+		// No big difference though...
+		// #pragma omp parallel for num_threads(4)
+		for (int y = 0; y < row; y += skip) {
+			for (int x = 0; x < col; x += skip) {
+				int index = y * col + x;
+				int skippedIndex = (y/skip) * (col/skip) + (x/skip);
 				unsigned short d = data[index];
-				if (d > 0) {
-					Vector3 v = dtracker->convertProjToRealCoords(x, y, d);
-					pc.addVertex(glm::vec3(v.x, v.y, v.z)*0.001);
-					ofFloatColor c;
+				Vector3 v = dtracker->convertProjToRealCoords(x, y, d);
+				pc.setVertex(skippedIndex, glm::vec3(v.x, v.y, v.z)*0.001);
+				if (v.y>-900) {
 					float g = ofMap(d, 0, 5000, 0.1, 1.0, true);
-					c.set(0, g, 0, 0.9);
-					pc.addColor(c);
-					
+					pc.setColor(skippedIndex, ofFloatColor(0, g, 0, 0.9));
+				}
+				else {
+					pc.setColor(skippedIndex, ofFloatColor(0, 0, 0, 0));
 				}
 			}
 		}
-
+		
 		bNeedPointcloudUpdate = false;
 	}
 }
