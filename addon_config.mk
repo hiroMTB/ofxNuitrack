@@ -15,7 +15,7 @@
 # and the PG will write to the console the kind of error and in which line it is
 
 meta:
-	ADDON_NAME = ofxAddonTemplate
+	ADDON_NAME = ofxNuitrack
 	ADDON_DESCRIPTION = openFrameworks addon for Nuitrack body tracking SDK, based on Cinder-Nuitrack block
 	ADDON_AUTHOR = @Hiroshi Matoba
 	ADDON_TAGS = "Nuitrack" "Skeleton Tracking"
@@ -29,7 +29,7 @@ linux64:
 linux:
 	ADDON_LIBS = 
 
-win_cb:
+
 vs:
 	ADDON_LIBS = 
 	ADDON_LIBS = libs/nuitrack/lib/win64/nuitrack.lib
