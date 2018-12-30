@@ -18,6 +18,6 @@ Follow the instruction [here](http://download.3divi.com/Nuitrack/doc/Installatio
 Nuitrack SDK has ONI file and BAG file playback feature. But only works 3 minite because of license issue. Probabry this is same even if you purchaced Nuitrack license. You can record depth and color stream to ONI file via NiViewer. And Realsense Viewer for BAG file. This repository does not include any files. Please record it by yourself.
 
 ## TODO
-- [ ] Windows support (under development)
+- [x] Windows support (under development)
 - [ ] Linux support (no plan so far)
 - [ ] Android support (no plan so far)
