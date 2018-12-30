@@ -1,5 +1,9 @@
-# ofxNuitrack
+![Screenshot](ss.png)
 
+[![Build Status](https://travis-ci.org/hiroMTB/ofxNuitrack.svg?branch=master)](https://travis-ci.org/hiroMTB/ofxNuitrack)
+[![Build status](https://ci.appveyor.com/api/projects/status/u39imujns0w1r9sr?svg=true)](https://ci.appveyor.com/project/hiroMTB/ofxnuitrack)
+
+# ofxNuitrack
 OpenFrameworks addon for Nuitrack body tracking SDK. Ported from [Cinder-Nuitrack block](https://github.com/daanvanhasselt/Cinder-Nuitrack).
 
 
