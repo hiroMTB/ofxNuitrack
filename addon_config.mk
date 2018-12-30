@@ -28,12 +28,6 @@ linux64:
 
 linux:
 	ADDON_LIBS = 
-
-
-vs:
-	ADDON_LIBS = 
-	ADDON_LIBS = libs/nuitrack/lib/win64/nuitrack.lib
-	ADDON_LIBS += libs/nuitrack/lib/win64/middleware.lib
 	
 linuxarmv6l:
 linuxarmv7l:
