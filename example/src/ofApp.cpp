@@ -25,7 +25,7 @@ void ofApp::setup(){
 	tracker->init();
 
 	bool bUseRealsense = true;
-	bool bPlayFile = true;
+	bool bPlayFile = false;
 
 	if (bUseRealsense) {
 		tracker->setConfigValue("Realsense2Module.Depth.FPS", "30");
